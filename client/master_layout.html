@@ -1,0 +1,26 @@
+<template name="masterLayout">
+  {{> nav}}
+  {{> yield}}
+  {{> footer}}
+</template>
+
+<template name="nav">
+ <nav>
+  <div class="nav-wrapper">
+    <a href="{{pathFor 'home'}}" class="brand-logo">Jobest</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="{{pathFor 'jobList'}} ">Browse Jobs</a></li>
+      {{#if currentUser}}
+      <li><a href="{{pathFor 'usersJob' userId= currentUser._id}}">Your posted Jobs</a></li>
+      <li><a href="{{pathFor 'newJob'}}">Post a job</a></li>
+      {{/if}}
+      <li><a href="javascript.html">JavaScript</a></li>
+      {{> loginButtons}}
+    </ul>
+  </div>
+</nav>
+</template>
+
+<template name="footer">
+
+</template>

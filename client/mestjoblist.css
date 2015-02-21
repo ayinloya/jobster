@@ -1,0 +1,51 @@
+/* CSS declarations go here */
+a.btn.btn-red {
+  background-color: rgba(255, 0, 0, 0.51);
+}
+#login-dropdown-list {
+  top: 33px;
+  left: -160px;
+}
+
+select.ak{
+  display: list-item;
+}
+
+#login-buttons .login-button:hover, .accounts-dialog .login-button:hover {
+  background-color: #26a69a;
+}
+
+#login-buttons .login-button, .accounts-dialog .login-button {
+
+  background: #26a69a;
+  border: 1px solid #26a69a;
+  border-radius: 4px;
+}
+
+.help-block {
+  color: rgba(255, 0, 0, 0.51);
+}
+span.badge.old {
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: #fff;
+  background-color: #26a69a;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  background-clip: padding-box;
+}
+.card .old a {
+  color: #fff;
+}
+
+
+.myJumbotron{
+  background-image: url('/img/j.jpg');
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 90%;
+  position: absolute;
+}
+}
