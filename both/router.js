@@ -1,9 +1,29 @@
+var OnBeforeActions;
 Router.configure({
   layoutTemplate: 'masterLayout',
   notFoundTemplate: '404',
   loadingTemplate: 'loading',
   routeControllerNameConverter: "camelCase"
 });
+
+OnBeforeActions = {
+  loginRequired: function (pause) {
+    console.log("document ready fun is here");
+
+    if ( Meteor.user() || Meteor.loggingIn()) {
+
+      this.next()
+    }
+    else{
+      Router.go('home');
+    }
+    
+  }
+};
+Router.onBeforeAction(OnBeforeActions.loginRequired, {
+  only: ['newJob', 'usersJob', 'editJob']
+});
+
 
 Router.route('/', function () {      // Route is the path after the url
   this.render('home');               // 'home' refers to the home template
@@ -60,6 +80,7 @@ Router.route('/jobList/details/:_id',function() {
 
 Router.route('/jobList/:userId/jobs',function() {
   this.render('usersJob')
+
 },
 {
   name: 'usersJob',
@@ -72,5 +93,16 @@ Router.route('/jobList/:userId/jobs',function() {
 }
 );
 
+Router.route('jobList/:_id/edits', function() {
+  this.render('updateJobsForm')
+},
+{
+  name: 'editJob',
+  data: function() {
 
-
+    return {
+      jobs: Jobs.findOne(this.params._id)
+    }
+  }
+}
+);

@@ -1,51 +1,44 @@
-// isOwner=function(userId) {
-//   console.log(Meteor.userId);
-//   return Meteor.userId === userId;
-// }
 
-
-Template.jobList.helpers({
-  isOwner: function (userid) {
-    var result =Meteor.userId() === userid;
-    return result;
-  }
+Template.registerHelper('isOwner',function (userid) {
+  var result = Meteor.userId() === userid;
+  return result;
 });
 
 
+AutoForm.hooks({
+  updateJobsForm: {
 
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+    // Called when any operation succeeds, where operation will be
+    // "insert", "update", "submit", or the method name.
+    onSuccess: function(operation, result, template) {
+      alert(operation);
+      Router.go('jobList')
+    },
 
-  // Template.jobList.helpers({
-  //   jobs: function () {
-  //     return Jobs.find();
-  //   }
-  // });
-
-
-  /*Template.body.events({
-    'submit .addJob': function (event,template) {
-      event.preventDefault();
-    Jobs.update({selector}, {modifier}, callback);
-      return false;
+    // Called when any operation fails, where operation will be
+    // "validation", "insert", "update", "submit", or the method name.
+    onError: function(operation, error, template) {
+      alert(error);
     }
-  });*/
-// AutoForm.addHooks('insertJobsForm', {
-//   onSubmit: function (doc) {
-//     console.log("Only this onSubmit");
-//   }
-// }, true);
+  },
+  updateJobsForm: {
+
+    // Called when any operation succeeds, where operation will be
+    // "insert", "update", "submit", or the method name.
+    onSuccess: function(operation, result, template) {
+      alert(operation);
+      Router.go('jobList')
+    },
+
+    // Called when any operation fails, where operation will be
+    // "validation", "insert", "update", "submit", or the method name.
+    onError: function(operation, error, template) {
+      alert(error);
+    }
+  }
+
+});
 
 
-// AutoForm.hooks({
-//   insertJobsForm: {
-//     onSubmit: function (insertDoc, updateDoc, currentDoc) {
-//       console.log("this should show")
-//       this.done();
-
-//       return false;
-//     }
-//   }
-// });
 
 

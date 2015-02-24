@@ -55,13 +55,14 @@
         </div>
         <div class="card-action">
           <a href="{{pathFor 'jobDetails' _id=_id }} ">Details</a>
+          <a href="{{pathFor 'editJob' _id=_id}}"></a>
           {{#if currentUser  }}
-          {{#if isOwner userId}}
+          <!-- {{#if isOwner userId}} -->
 
           <span class="old badge"> owner </span>
           {{else}}
           <a href='#'>Apply</a>
-          {{/if}}
+          <!-- {{/if}} -->
           {{/if}}
         </div>
       </div>
