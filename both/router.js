@@ -72,7 +72,8 @@ Router.route('/jobList/details/:_id',function() {
   data: function() {
     console.log(Jobs.findOne(this.params._id))
     return {
-      jobs: Jobs.findOne(this.params._id)
+      job: Jobs.findOne(this.params._id),
+      jobApplications: JobsApplications.find({id: this.params._id}).fetch()
     }
   }
 }
@@ -101,7 +102,35 @@ Router.route('jobList/:_id/edits', function() {
   data: function() {
 
     return {
-      jobs: Jobs.findOne(this.params._id)
+      job: Jobs.findOne(this.params._id)
+    }
+  }
+}
+);
+
+Router.route('/jobList/:_id/apply', function() {
+  this.render('insertJobsApplication')
+},
+{
+  name: 'applyJob',
+  data: function() {
+
+    return {
+      job: Jobs.findOne(this.params._id)
+    }
+  }
+}
+);
+Router.route('jobList/:_id/submissions', function() {
+  this.render('jobSumissions')
+},
+{
+  name: 'viewApplications',
+  data: function() {
+
+    return {
+      job: Jobs.findOne(this.params._id),
+      jobApplications: JobsApplications.find({id: this.params._id}).fetch()
     }
   }
 }

@@ -1,22 +1,42 @@
 <template name="jobdetails">
-  <div class="row">
 
+
+  <div class="row">
     <div class="col s6 m6">
       <div class="card-panel blue-grey darken-2">
         <div class="card-content white-text">
-          <span class="card-title"><h2>{{jobs.title}}</h2></span>
-          <p>Description: {{jobs.description}}</p>
-          <p>Deadline: {{jobs.dueDate}}</p>
-          <p>Contact: {{jobs.contact}}</p>
+          <span class="card-title"><h2>{{job.title}}</h2></span>
+          <p>Description: {{job.description}}</p>
+          <p>Deadline: {{job.dueDate}}</p>
+          <p>Contact: {{job.contact}}</p>
         </div>
         <div class="card-action">
-          <a href='#' class="btn btn-primary">Apply</a>
-          <a href='#' class="btn btn-red">Delete </a>
-          {{#if isOwner currentUser._id}}
-          <a href="{{pathFor 'editJob' _id = jobs._id }}" class="btn btn-primary"><i class="mdi-content-create"></i></a>
+          {{#if $neq isOwner currentUser._id}}
+
+          <a href="{{pathFor 'applyJob' _id = job._id}}" class="btn btn-primary">Apply</a>
+
+          {{else}}
+          {{#afModal class="btn red darken-3" collection="JobsApplications" operation="remove" doc=job._id}}
+          <i class="mdi-action-delete"></i>
+          {{/afModal}}
+          <a href="{{pathFor 'viewApplications' _id = job._id}}" class="btn btn-primary">View submissions</a>
+          
+          <a href="{{pathFor 'editJob' _id = job._id }}" class="btn btn-primary"><i class="mdi-content-create"></i></a>
           {{/if}}
         </div>
       </div>
+      {{#if $neq isOwner currentUser._id}}
+
+      <div class="container">
+        {{#each jobApplications}}
+        <div class="panel row">
+          <div class="col s4">
+            {{email}}
+          </div>
+        </div>
+        {{/each}} 
+      </div>
+      {{/if}}
     </div>
   </div>
 </template>

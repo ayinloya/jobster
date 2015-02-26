@@ -19,6 +19,7 @@
 </template>
 <template name="jobList">
   <div class="row">
+    {{> autoformModals}}
 
     <div class="col s2 m1">
       <a href="{{pathFor 'jobList'}}" class="btn btn-default btn-small"> All jobs</a>
@@ -56,14 +57,15 @@
         <div class="card-action">
           <a href="{{pathFor 'jobDetails' _id=_id }} ">Details</a>
           <a href="{{pathFor 'editJob' _id=_id}}"></a>
-          {{#if currentUser  }}
-          <!-- {{#if isOwner userId}} -->
+
+          {{#if $eq isOwner userId}}
 
           <span class="old badge"> owner </span>
           {{else}}
-          <a href='#'>Apply</a>
-          <!-- {{/if}} -->
+          <a href="#{{pathFor 'applyJob' _id=_id}}">Apply</a>
           {{/if}}
+
+          
         </div>
       </div>
     </div>

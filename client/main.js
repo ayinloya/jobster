@@ -1,7 +1,7 @@
-isOwner =function (userid) {
-  var result = Meteor.userId() === userid;
-  return result;
-}
+// isOwner =function (userid) {
+//   var result = Meteor.userId() === userid;
+//   return result;
+// }
 
 
 Accounts.ui.config({
