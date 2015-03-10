@@ -1,0 +1,152 @@
+<head>
+  <title>jobest</title>
+</head>
+
+<body>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a href="#!" class="brand-logo">Jobest</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+          <ul class="right hide-on-med-and-down">
+            {{> loginButtons}}
+            <li><a href="/" class="btnShowAddJob">Add a Job</a></li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li></li>
+            <li><a href="/" class="btnShowAddJob">Add a Job</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <form class="jobSearch">
+
+        <div class="input-field col s6">
+          <i class="mdi-action-search prefix"></i>
+          <input type="search" name="" id="icon_prefix" class="validate searchField" value="" required="required" title="">
+          <label for="icon_prefix">Search for a job</label>
+        </div>
+        <div class="col s3"><a class="waves-effect waves-light btn btn-search">Search</a></div>
+      </form>
+    </div>
+
+
+    <div class="row center-align">
+      <h4 >Add a job</h4>
+      {{> addjobs}}
+    </div>
+  </div>
+
+
+  <div class="container currentJobs">
+    
+    {{> job}}
+  </div>
+  <div class="container">
+
+    <h4>Browse jobs by category</h4>
+    {{> category}}
+  </div>
+
+
+
+
+
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Footer Content</h5>
+          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2015 Copyright MEST
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+<template name="j">
+</template>
+
+<template name="job">
+  <h5>List of jobs</h5>
+  <div class="row collection-header">
+    <div class="col s3">Title</div>  
+    <div class="col s3">Description</div>  
+    <div class="col s3">Contact</div>  
+    <div class="col s3">Category</div>  
+  </div>
+  <div class="row">
+
+    {{#each jobs}}
+
+    <div class="col s3">  {{title}}</div>
+    <div class="col s3"> {{description}}</div>
+    <div class="col s3">{{contact}}</div>
+    <div class="col s3">{{category}}</div>
+    {{/each}}
+  </div>
+</template>
+
+
+<template name="addjobs">
+  <form class="addJobForm">
+    <div class="input-field col s6">
+      <!-- <i class="mdi-action-search prefix"></i> -->
+      <input type="search" name="" id="icon_prefix" class="validate title" value="" required="required" title="">
+      <label for="icon_prefix">Title</label>
+    </div>
+    <div class="input-field col s6">
+      <!-- <i class="mdi-action-search prefix"></i> -->
+      <input type="text" name="" id="icon_prefix" class="validate location" value="" required="required" title="">
+      <label for="icon_prefix">location</label>
+    </div>
+    <div class="input-field col s6">
+      <!-- <i class="mdi-action-search prefix"></i> -->
+      <input type="text" name="" id="icon_prefix" class="validate category" value="" required="required" title="">
+      <label for="icon_prefix">Category</label>
+    </div>
+    <div class="input-field col s6">
+      <!-- <i class="mdi-action-search prefix"></i> -->
+      <input type="text" name="" id="icon_prefix" class="validate description" value="" required="required" title="">
+      <label for="icon_prefix">description</label>
+    </div>
+    <div class="input-field col s6">
+      <!-- <i class="mdi-action-search prefix"></i> -->
+      <input type="text" name="" id="icon_prefix" class="validate requirements" value="" required="required" title="">
+      <label for="icon_prefix">requirements</label>
+    </div>
+    <div class="input-field col s6">
+      <!-- <i class="mdi-action-search prefix"></i> -->
+      <input type="text" name="" id="icon_prefix" class="validate contact" value="" required="required" title="">
+      <label for="icon_prefix">Contact</label>
+    </div> 
+    <div class="input-field col s6">
+      <!-- <i class="mdi-action-search prefix"></i> -->
+      <input type="text" name="" id="icon_prefix" class="validate url" value="" required="required" title="">
+      <label for="icon_prefix">url</label>
+    </div>
+    <div class="col s3"><button type="submit" class="waves-effect waves-light btn btn-add">Add Job</button></div>
+
+  </form>
+</template>
