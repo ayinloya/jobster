@@ -36,17 +36,28 @@ Router.route('/jobList',function() {
 },
 {
   name: 'jobList',
+  waitOn: function() {
+    return [
+    Meteor.subscribe('jobs')
+    ]
+  },
   data: function() {
     return {
       jobs: Jobs.find().fetch()
     }
-  }}
-  );
+  }
+});
 Router.route('/jobList/:category',function() {
   this.render('jobList')
 },
 {
   name: 'jobCategory',
+  waitOn: function() {
+    var category = this.params.category
+    return [
+    Meteor.subscribe('categories',category)
+    ]
+  },
   data: function() {
     return {                        // Return only documents with the category in the parameters
       jobs: Jobs.find({category: this.params.category}).fetch(),
@@ -69,14 +80,21 @@ Router.route('/jobList/details/:_id',function() {
 },
 {
   name: 'jobDetails',
+
+  waitOn: function() {
+    var _id = this.params._id
+    return [
+    Meteor.subscribe('singleJob', _id),
+    Meteor.subscribe('applicatinsByJob', _id)
+    ]
+  },
   data: function() {
     return {
       job: Jobs.findOne(this.params._id),
       jobApplications: JobsApplications.find({job: this.params._id}).fetch()
     }
   }
-}
-);
+});
 
 Router.route('/jobList/:userId/jobs',function() {
   this.render('usersJob')
@@ -142,6 +160,10 @@ Router.route('/dashboard', function() {
 },
 {
   name: 'dashboard',
+  waitOn: function() {
+    return Meteor.subscribe('ownerJobs', Meteor.userId())
+    
+  },
   data: function() {
     console.log(Jobs.find({userId: Meteor.userId()}).fetch())
     return {
