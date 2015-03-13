@@ -2,41 +2,66 @@
 
 
   <div class="row">
-    <div class="col s6 m6">
-      <div class="card-panel blue-grey darken-2">
-        <div class="card-content white-text">
-          <span class="card-title"><h2>{{job.title}}</h2></span>
-          <p>Description: {{job.description}}</p>
-          <p>Deadline: {{job.dueDate}}</p>
-          <p>Contact: {{job.contact}}</p>
+    <div class="col s5">
+     <div class="card blue-grey darken-2">
+
+      {{#if FS.GetFile 'images' job.picture}}
+      <div class="card-image">
+        {{#with FS.GetFile 'images' job.picture}}
+        <img src="{{this.url picture}}">
+        {{/with}}
+        <span class="card-title">{{job.title}}
+          <a href="{{pathFor 'jobCategory' category=category}}">
+           <span class="old badge"> {{job.category}}
+           </span>
+         </a>
+       </span>
+     </div>
+     {{/if}}
+     <div class="card-content white-text">
+
+      {{#if FS.GetFile 'images' job.picture}}
+      {{else}}
+      <span class="card-title">{{job.title}}<a href="{{pathFor 'jobCategory' category=category}}"> <span class="old badge"> {{job.category}}</span></a></span>
+      {{/if}}
+      <p>{{job.description}}</p>
+    </div>
+    <div class="card-action">
+      {{#if $eq isOwner job.userId}}
+      <a href="{{pathFor 'editJob' _id=job._id}}" class="btn old waves-effect waves-green"><i class="mdi-editor-mode-edit"></i></a>
+      <a class="btn bnt-delete old waves-effect waves-green" ><i></i>Delete</a>
+
+      <!-- Modal Trigger -->
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>Modal Header</h4>
+          <p>A bunch of text</p>
         </div>
-        <div class="card-action">
-          {{#if $neq isOwner currentUser._id}}
-
-          <a href="{{pathFor 'applyJob' _id = job._id}}" class="btn btn-primary">Apply</a>
-
-          {{else}}
-          {{#afModal class="btn red darken-3" collection="JobsApplications" operation="remove" doc=job._id}}
-          <i class="mdi-action-delete"></i>
-          {{/afModal}}
-          <a href="{{pathFor 'viewApplications' _id = job._id}}" class="btn btn-primary">View submissions</a>
-          
-          <a href="{{pathFor 'editJob' _id = job._id }}" class="btn btn-primary"><i class="mdi-content-create"></i></a>
-          {{/if}}
+        <div class="modal-footer">
+          <a href="{{pathFor 'editJob' _id=job._id}}" class="btn btn-red"><i class="mdi-action-delete"></i></a>
+          <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Agree</a>
         </div>
       </div>
-      {{#if $neq isOwner currentUser._id}}
-
-      <div class="container">
-        {{#each jobApplications}}
-        <div class="panel row">
-          <div class="col s4">
-            {{email}}
-          </div>
-        </div>
-        {{/each}} 
-      </div>
+      {{else}}
+      <a href="{{pathFor 'applyJob' _id=job._id}}" class="waves-effect waves-green btn ">Apply</a>
       {{/if}}
     </div>
   </div>
+</div>
+<div class="row col s7">
+  <div class="card">
+    {{> jobSumissions}}
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+  
+  $(document).ready(function($) {
+    console.log("here is the ready document  " + $('.button-collapse'))
+    $('.button-collapse').sideNav({menuWidth: 240, activationWidth: 70});
+    $('.modal1').leanModal();
+  });
+</script>
 </template>

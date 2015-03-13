@@ -6,7 +6,6 @@
 
 meteor-platform
 autopublish
-insecure
 materialize:materialize
 aldeed:autoform
 iron:router
@@ -18,3 +17,9 @@ accounts-ui
 aldeed:collection2
 raix:handlebar-helpers
 yogiben:autoform-modals
+cfs:gridfs
+cfs:standard-packages
+yogiben:autoform-file
+cfs:ui
+email
+ogamedia:timer

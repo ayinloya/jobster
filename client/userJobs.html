@@ -1,17 +1,7 @@
-<template name="usersJob">
+<template name="userJobs">
   <div class="row">
     {{#each jobs}}
-    <div class="col s6 m4">
-      <div class="card blue-grey darken-2">
-        <div class="card-content white-text">
-          <span class="card-title">{{title}}<a href="{{pathFor 'jobCategory' category=category}}"> <span class="old badge"> {{category}}</span></a></span>
-          <p>{{description}}</p>
-        </div>
-        <div class="card-action">
-          <a href="{{pathFor 'jobDetails' _id=_id }} ">Details</a>
-        </div>
-      </div>
-    </div>
+    {{> jobIt}}
     {{else}}
     <div class="col s12 m12 text-center"><h4 class="red-text">There is no job in this category</h4></div>
     {{/each}}

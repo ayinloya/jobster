@@ -14,7 +14,7 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="{{pathFor 'jobList'}} ">Browse Jobs</a></li>
         {{#if currentUser}}
-        <li><a href="{{pathFor 'usersJob' userId= currentUser._id}}">Your posted Jobs</a></li>
+        <li><a href="{{pathFor 'dashboard'}}">Dashboard</a></li>
         <li><a href="{{pathFor 'newJob'}}">Post a job</a></li>
         {{/if}}
         <li><a href="javascript.html">JavaScript</a></li>
@@ -23,7 +23,7 @@
       <ul class="side-nav" id="mobile-demo">
         <li><a href="{{pathFor 'jobList'}} ">Browse Jobs</a></li>
         {{#if currentUser}}
-        <li><a href="{{pathFor 'usersJob' userId= currentUser._id}}">Your posted Jobs</a></li>
+        <li><a href="{{pathFor 'dashboard'}}">Dashboard</a></li>
         <li><a href="{{pathFor 'newJob'}}">Post a job</a></li>
         {{/if}}
         <li><a href="javascript.html">JavaScript</a></li>

@@ -1,5 +1,10 @@
 <template name="jobSumissions">
-{{#each jobApplications}}
-{{email}}
-{{/each}}
+  {{#each jobApplications}}
+  <div class="card-panel teal lighten-2">
+   {{description}}
+   {{tm_now createdAt}}
+ </div>
+ 
+ 
+ {{/each}}
 </template>

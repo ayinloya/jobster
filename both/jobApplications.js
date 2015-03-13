@@ -18,6 +18,16 @@ JobsApplications.attachSchema(new SimpleSchema({
       }
     }
   },
+  file: {
+    type: String,
+    optional: true,
+    autoform:{
+      afFieldInput: {
+        type: 'fileUpload',
+        collection: 'Files'
+      }
+    }
+  },
   createdAt: {
     type: Date,
     autoform: {

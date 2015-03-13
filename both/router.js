@@ -70,10 +70,9 @@ Router.route('/jobList/details/:_id',function() {
 {
   name: 'jobDetails',
   data: function() {
-    console.log(Jobs.findOne(this.params._id))
     return {
       job: Jobs.findOne(this.params._id),
-      jobApplications: JobsApplications.find({id: this.params._id}).fetch()
+      jobApplications: JobsApplications.find({job: this.params._id}).fetch()
     }
   }
 }
@@ -108,7 +107,7 @@ Router.route('jobList/:_id/edits', function() {
 }
 );
 
-Router.route('/jobList/:_id/apply', function() {
+Router.route('jobList/:_id/apply', function() {
   this.render('insertJobsApplication')
 },
 {
@@ -128,9 +127,25 @@ Router.route('jobList/:_id/submissions', function() {
   name: 'viewApplications',
   data: function() {
 
+    conso = {Jobs: Jobs.findOne(this.params._id),
+      jobApplications: JobsApplications.find({id: this.params._id}).fetch()}
+
+      return {
+        job: Jobs.findOne(this.params._id),
+        jobApplications: JobsApplications.find({job: this.params._id}).fetch()
+      }
+    }
+  }
+  );
+Router.route('/dashboard', function() {
+  this.render('dashboard')
+},
+{
+  name: 'dashboard',
+  data: function() {
+    console.log(Jobs.find({userId: Meteor.userId()}).fetch())
     return {
-      job: Jobs.findOne(this.params._id),
-      jobApplications: JobsApplications.find({id: this.params._id}).fetch()
+      jobs: Jobs.find({userId: Meteor.userId()}).fetch()
     }
   }
 }

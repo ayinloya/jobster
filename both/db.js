@@ -22,6 +22,15 @@ Jobs.attachSchema(new SimpleSchema({
     label: "Due date",
     min: 0
   },
+  picture: {
+    type: String,
+    autoform:{
+      afFieldInput: {
+        type: 'fileUpload',
+        collection: 'Images'
+      }
+    }
+  },
   createdAt: {
     type: Date,
     autoValue:function(){
@@ -65,5 +74,6 @@ Jobs.attachSchema(new SimpleSchema({
   }
 }
 ));
+
 
 

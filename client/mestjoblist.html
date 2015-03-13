@@ -1,4 +1,3 @@
-
 <template name="browseJobs">
 
 
@@ -18,59 +17,49 @@
 
 </template>
 <template name="jobList">
-  <div class="row">
-    {{> autoformModals}}
+  <div class="row defaultWidth">
 
-    <div class="col s2 m1">
+
+    <div class="col s2">
       <a href="{{pathFor 'jobList'}}" class="btn btn-default btn-small"> All jobs</a>
     </div> 
-    <div class="col s2 m1">
+    <div class="col s2">
       <a href="{{pathFor 'jobCategory' category='web'}}" class="btn btn-default">Web development</a>
     </div> 
-    <div class="col s2 m1">
-      <a href="{{pathFor 'jobCategory' category='android'}}" class="btn btn-default">Android</a>
+    <div class="col s2">
+      <a href="{{pathFor 'jobCategory' category='android'}}" class="btn btnd-efault">Android</a>
     </div> 
-    <div class="col s2 m1">
+    <div class="col s2">
       <a href="{{pathFor 'jobCategory' category='repairs'}}" class="btn btn-default">Repairs</a>
     </div>
-    <div class="col s2 m1">
+    <div class="col s2">
       <a href="{{pathFor 'jobCategory' category='comms'}}" class="btn btn-default">Communication</a>
     </div>
-    <div class="col s2 m1">
+    <div class="col s2">
       <a href="{{pathFor 'jobCategory' category='business'}}" class="btn btn-default">Business</a>
     </div>
-    <div class="col s2 m1">
+    <div class="col s2">
       <a href="{{pathFor 'jobCategory' category='other'}}" class="btn btn-default">Other</a>
     </div>
   </div>
+  <div class="help">
+
+    {{msgHelper}}
+  </div> 
   <hr class="divider">
 
 
   <div class="row">
     {{#each jobs}}
-    <div class="col s6 m4">
-      <div class="card blue-grey darken-2">
-        <div class="card-content white-text">
-          <span class="card-title">{{title}}<a href="{{pathFor 'jobCategory' category=category}}"> <span class="old badge"> {{category}}</span></a></span>
-          <p>{{description}}</p>
-        </div>
-        <div class="card-action">
-          <a href="{{pathFor 'jobDetails' _id=_id }} ">Details</a>
-          <a href="{{pathFor 'editJob' _id=_id}}"></a>
-
-          {{#if $eq isOwner userId}}
-
-          <span class="old badge"> owner </span>
-          {{else}}
-          <a href="#{{pathFor 'applyJob' _id=_id}}">Apply</a>
-          {{/if}}
-
-          
-        </div>
+    {{> jobItem}}
+    {{else}}
+    <div class="col s12 m12 text-center">
+      <div class="toast">
+        
+        <h4 class="red-text">There is no job in this category
+        </h4>
       </div>
     </div>
-    {{else}}
-    <div class="col s12 m12 text-center"><h4 class="red-text">There is no job in this category</h4></div>
     {{/each}}
   </div>  
 

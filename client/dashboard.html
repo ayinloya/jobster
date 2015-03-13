@@ -1,0 +1,11 @@
+<template name="dashboard">
+  <div class="row">
+    <ul>
+      {{#each jobs}}
+      <li>
+        {{> jobItem}}
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

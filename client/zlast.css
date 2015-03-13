@@ -1,0 +1,10 @@
+.defaultWidth.row .col.s2{
+  width: initial;
+}
+.control-label, .input-field label{
+  color: #fff;
+}
+
+.card{
+  background-color: #009688;
+}

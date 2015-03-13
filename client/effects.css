@@ -1,0 +1,51 @@
+.typing
+{
+  width: 30em;
+  white-space:nowrap;
+  overflow:hidden;
+  -webkit-animation: type 5s steps(50, end);
+  animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+  from { width: 0; }
+}
+
+@-webkit-keyframes type{
+  from { width: 0; }
+}
+
+.errorImg {
+  width: 100px;
+  height: 100px;
+  background-image: url('/img/error.gif');
+  background-size: cover;
+  position: relative;
+  -webkit-animation: moveBoat 5s; /* Chrome, Safari, Opera */
+  animation: moveBoat 30s;
+  animation-delay: 2s;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-delay: 2s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes moveBoat {
+  0%   {left:0px; top:0px;}
+  50%  { left:700px; top:0px;}
+  99% {-webkit-transform: rotateY(130deg); /* Chrome, Safari, Opera */
+  transform: rotateY(130deg); /* Standard syntax */}
+  100% { left:0px; top:0px;}
+}
+
+/* Standard syntax */
+@keyframes moveBoat {
+  00%   {left:0px; top:0px;}
+  70%  { left:500px; top:0px; -webkit-transform: rotateY(130deg); /* Chrome, Safari, Opera */
+  transform: rotateY(130deg); /* Standard syntax */}
+  99% {-webkit-transform: rotateY(130deg); /* Chrome, Safari, Opera */
+  transform: rotateY(130deg); /* Standard syntax */}
+  100% { left:0px; top:0px;}
+}
+
+}
